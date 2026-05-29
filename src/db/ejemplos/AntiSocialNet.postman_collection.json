@@ -1,0 +1,205 @@
+{
+  "info": {
+    "name": "Unahur - Anti-Social Net API",
+    "description": "Colección de pruebas para la API Anti-Social Net",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "Listar usuarios",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3001/Usuarios"
+          }
+        },
+        {
+          "name": "Crear usuario",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:3001/Usuarios",
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"nickname\": \"Fulanito\" }"
+            }
+          }
+        },
+        {
+          "name": "Obtener usuario por ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3001/Usuarios/1"
+          }
+        },
+        {
+          "name": "Eliminar usuario",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:3001/Usuarios/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Publicaciones",
+      "item": [
+        {
+          "name": "Listar publicaciones de usuario",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3001/Usuarios/1/publicaciones"
+          }
+        },
+        {
+          "name": "Crear publicación",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:3001/Usuarios/1/publicaciones",
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"descripcion\": \"Mi primera publicación\" }"
+            }
+          }
+        },
+        {
+          "name": "Obtener publicación por ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3001/Usuarios/1/publicaciones/1"
+          }
+        },
+        {
+          "name": "Eliminar publicación",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:3001/Usuarios/1/publicaciones/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Comentarios",
+      "item": [
+        {
+          "name": "Listar comentarios",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3001/Usuarios/1/publicaciones/1/comentarios"
+          }
+        },
+        {
+          "name": "Agregar comentario",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:3001/Usuarios/1/publicaciones/1/comentarios",
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"autorNombre\": \"Anon\", \"contenido\": \"Buen post\" }"
+            }
+          }
+        },
+        {
+          "name": "Eliminar comentario",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:3001/Usuarios/1/publicaciones/1/comentarios/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Publicacion_Imagenes",
+      "item": [
+        {
+          "name": "Listar imágenes",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3001/Usuarios/1/publicaciones/1/imagenes"
+          }
+        },
+        {
+          "name": "Agregar imagen",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:3001/Usuarios/1/publicaciones/1/imagenes",
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"url\": \"http://example.com/imagen.png\" }"
+            }
+          }
+        },
+        {
+          "name": "Eliminar imagen",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:3001/Usuarios/1/publicaciones/1/imagenes/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tags_Publicacion",
+      "item": [
+        {
+          "name": "Listar tags de publicación",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3001/Usuarios/1/publicaciones/1/tags"
+          }
+        },
+        {
+          "name": "Agregar tag",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:3001/Usuarios/1/publicaciones/1/tags",
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"etiqueta\": \"retro\" }"
+            }
+          }
+        },
+        {
+          "name": "Eliminar tag de publicación",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:3001/Usuarios/1/publicaciones/1/tags/1"
+          }
+        }
+        ]
+        },
+        {
+          "name": "Tags",
+          "item": [
+          {
+            "name": "Listar tags",
+            "request": {
+              "method": "GET",
+              "url": "http://localhost:3001/Tags"
+            }
+          },
+          {
+            "name": "Crear tag",
+            "request": {
+              "method": "POST",
+              "url": "http://localhost:3001/Tags",
+              "body": {
+                "mode": "raw",
+                "raw": "{ \"etiqueta\": \"Vacaciones\" }"
+              }
+            }
+          },
+          {
+            "name": "Eliminar tag",
+            "request": {
+            "method": "DELETE",
+            "url": "http://localhost:3001/Tags/1"
+            }
+          }
+        ]
+      }
+    ]
+}
+      
+      

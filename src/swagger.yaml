@@ -1,0 +1,279 @@
+openapi: 3.0.0
+info:
+  title: Unahur - Anti-Social Net API
+  version: 1.0.0
+  description: Documentación del MVP de la red Anti-Social
+
+servers:
+  - url: http://localhost:3001
+
+paths:
+  /Usuarios:
+    get:
+      summary: Listar todos los usuarios
+      responses:
+        '200':
+          description: Lista de usuarios
+          content:
+            application/json:
+              example:
+                - id: 1
+                  nickName: "Juan"
+                - id: 2
+                  nickName: "Ana"
+    post:
+      summary: Crear un nuevo usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+      responses:
+        '201':
+          description: Usuario creado
+
+  /Usuarios/{usuarioId}:
+    get:
+      summary: Obtener usuario por ID
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+      responses:
+        '200':
+          description: Usuario encontrado
+    delete:
+      summary: Eliminar usuario
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+      responses:
+        '200':
+          description: Usuario eliminado
+
+  /Usuarios/{usuarioId}/publicaciones:
+    get:
+      summary: Listar publicaciones de un usuario
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+      responses:
+        '200':
+          description: Lista de publicaciones
+    post:
+      summary: Crear publicación para un usuario
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+                id: 1
+                descripcion: "Mi primera publicación"
+                usuarioId: 1
+            schema:
+              $ref: '#/components/schemas/Publicacion'
+      responses:
+        '201':
+          description: Publicación creada
+
+  /Usuarios/{usuarioId}/publicaciones/{publicacionId}:
+    get:
+      summary: Obtener publicación por ID
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+        - $ref: '#/components/parameters/publicacionId'
+      responses:
+        '200':
+          description: Publicación encontrada
+    delete:
+      summary: Eliminar publicación
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+        - $ref: '#/components/parameters/publicacionId'
+      responses:
+        '200':
+          description: Publicación eliminada
+
+  /Usuarios/{usuarioId}/publicaciones/{publicacionId}/comentarios:
+    get:
+      summary: Listar comentarios de una publicación
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+        - $ref: '#/components/parameters/publicacionId'
+      responses:
+        '200':
+          description: Lista de comentarios
+    post:
+      summary: Agregar comentario a una publicación
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+        - $ref: '#/components/parameters/publicacionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comentario'
+      responses:
+        '201':
+          description: Comentario creado
+
+  /Usuarios/{usuarioId}/publicaciones/{publicacionId}/comentarios/{comentarioId}:
+    delete:
+      summary: Eliminar comentario
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+        - $ref: '#/components/parameters/publicacionId'
+        - $ref: '#/components/parameters/comentarioId'
+      responses:
+        '200':
+          description: Comentario eliminado
+
+  /Usuarios/{usuarioId}/publicaciones/{publicacionId}/imagenes:
+    get:
+      summary: Listar imágenes de una publicación
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+        - $ref: '#/components/parameters/publicacionId'
+      responses:
+        '200':
+          description: Lista de imágenes
+    post:
+      summary: Agregar imagen a una publicación
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+        - $ref: '#/components/parameters/publicacionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Imagen'
+      responses:
+        '201':
+          description: Imagen creada
+
+  /Usuarios/{usuarioId}/publicaciones/{publicacionId}/imagenes/{imagenId}:
+    delete:
+      summary: Eliminar imagen
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+        - $ref: '#/components/parameters/publicacionId'
+        - $ref: '#/components/parameters/imagenId'
+      responses:
+        '200':
+          description: Imagen eliminada
+
+  /Usuarios/{usuarioId}/publicaciones/{publicacionId}/tags:
+    get:
+      summary: Listar tags de una publicación
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+        - $ref: '#/components/parameters/publicacionId'
+      responses:
+        '200':
+          description: Lista de tags
+    post:
+      summary: Agregar tag a una publicación
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+        - $ref: '#/components/parameters/publicacionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+      responses:
+        '201':
+          description: Tag agregado
+
+  /Usuarios/{usuarioId}/publicaciones/{publicacionId}/tags/{tagId}:
+    delete:
+      summary: Eliminar tag de una publicación
+      parameters:
+        - $ref: '#/components/parameters/usuarioId'
+        - $ref: '#/components/parameters/publicacionId'
+        - $ref: '#/components/parameters/tagId'
+      responses:
+        '200':
+          description: Tag eliminado de la publicación
+
+components:
+  parameters:
+    usuarioId:
+      name: usuarioId
+      in: path
+      required: true
+      schema:
+        type: integer
+    publicacionId:
+      name: publicacionId
+      in: path
+      required: true
+      schema:
+        type: integer
+    comentarioId:
+      name: comentarioId
+      in: path
+      required: true
+      schema:
+        type: integer
+    imagenId:
+      name: imagenId
+      in: path
+      required: true
+      schema:
+        type: integer
+    tagId:
+      name: tagId
+      in: path
+      required: true
+      schema:
+        type: integer
+
+  schemas:
+    Usuario:
+      type: object
+      properties:
+        id:
+          type: integer
+        nickName:
+          type: string
+    Publicacion:
+      type: object
+      properties:
+        id:
+          type: integer
+        descripcion:
+          type: string
+        usuarioId:
+          type: integer
+    Comentario:
+      type: object
+      properties:
+        id:
+          type: integer
+        autorNombre:
+          type: string
+        contenido:
+          type: string
+        publicacionId:
+          type: integer
+        esVisible:
+          type: boolean
+    Imagen:
+      type: object
+      properties:
+        id:
+          type: integer
+        url:
+          type: string
+        publicacionId:
+          type: integer
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        etiqueta:
+          type: string
